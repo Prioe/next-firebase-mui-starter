@@ -6,9 +6,26 @@
     "build": "next build",
     "start": "next start"
   },
+  "eslintConfig": {
+    "extends": "sbkonzept"
+  },
   "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.5.0",
+    "@typescript-eslint/parser": "^2.5.0",
+    "babel-eslint": "^10.0.3",
     "body-parser": "^1.17.1",
     "connect-session-firebase": "^5.13.0",
+    "eslint": "^6.6.0",
+    "eslint-config-airbnb": "18.0.1",
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-config-sbkonzept": "1.6.0",
+    "eslint-import-resolver-typescript": "^2.0.0",
+    "eslint-plugin-compat": "^3.3.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-react": "^7.16.0",
+    "eslint-plugin-react-hooks": "^2.2.0",
     "express": "^4.14.0",
     "express-session": "^1.15.2",
     "firebase": "^7.2.2",
@@ -16,8 +33,10 @@
     "isomorphic-unfetch": "3.0.0",
     "micro": "^9.3.5-canary.3",
     "next": "latest",
+    "prettier": "^1.18.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
-    "session-file-store": "^1.0.0"
+    "session-file-store": "^1.0.0",
+    "typescript": "^3.6.4"
   }
 }

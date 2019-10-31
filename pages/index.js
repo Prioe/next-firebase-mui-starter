@@ -4,54 +4,51 @@ import firebase from '../utils/isomorphic-firebase'
 import { withSession } from '../utils/session'
 
 class Index extends Component {
-  static async getInitialProps ({ req, res, query }) {
+  static async getInitialProps({ req }) {
     const user = req && req.session ? req.session.decodedToken : null
     return { user }
   }
 
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       user: this.props.user
     }
   }
 
-  componentDidMount () {
-    firebase.auth().onAuthStateChanged(user => {
+  componentDidMount() {
+    firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        this.setState({ user: user })
-        return user
-          .getIdToken()
-          .then(token => {
+        this.setState({ user })
+        return user.getIdToken().then((token) => {
+          // eslint-disable-next-line no-undef
+          return fetch('/api/login', {
+            method: 'POST',
             // eslint-disable-next-line no-undef
-            return fetch('/api/login', {
-              method: 'POST',
-              // eslint-disable-next-line no-undef
-              headers: new Headers({ 'Content-Type': 'application/json' }),
-              credentials: 'same-origin',
-              body: JSON.stringify({ token })
-            })
+            headers: new Headers({ 'Content-Type': 'application/json' }),
+            credentials: 'same-origin',
+            body: JSON.stringify({ token })
           })
-      } else {
-        this.setState({ user: null })
-        // eslint-disable-next-line no-undef
-        fetch('/api/logout', {
-          method: 'POST',
-          credentials: 'same-origin'
         })
       }
+      this.setState({ user: null })
+      // eslint-disable-next-line no-undef
+      fetch('/api/logout', {
+        method: 'POST',
+        credentials: 'same-origin'
+      })
     })
   }
 
-  handleLogin () {
+  handleLogin() {
     firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider())
   }
 
-  handleLogout () {
+  handleLogout() {
     firebase.auth().signOut()
   }
 
-  render () {
+  render() {
     const { user } = this.state
 
     return (
@@ -63,8 +60,8 @@ class Index extends Component {
         )}
         {user && (
           <>
-          <pre>{JSON.stringify(user, null, 2)}</pre>
-          <pre>{JSON.stringify(this.props.user, null, 2)}</pre>
+            <pre>{JSON.stringify(user, null, 2)}</pre>
+            <pre>{JSON.stringify(this.props.user, null, 2)}</pre>
           </>
         )}
       </div>

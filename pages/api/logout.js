@@ -1,7 +1,8 @@
+import micro from 'micro'
 import session from '../../utils/session'
-export default async (req, res) => {
-    await session(req, res)
-    req.session.decodedToken = null
-    res.json({ status: true })
-  }
 
+export default micro(async (req, res) => {
+  await session(req, res)
+  req.session.decodedToken = null
+  return { status: true }
+})
