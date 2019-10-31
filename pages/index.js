@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
-import firebase from 'firebase/app'
-import 'firebase/auth'
-import 'firebase/firestore'
 import 'isomorphic-unfetch'
-import clientCredentials from '../credentials/client'
+import firebase from '../utils/isomorphic-firebase'
+import { withSession } from '../utils/session'
 
-export default class Index extends Component {
-  static async getInitialProps ({ req, query }) {
+class Index extends Component {
+  static async getInitialProps ({ req, res, query }) {
     const user = req && req.session ? req.session.decodedToken : null
     return { user }
   }
@@ -19,8 +17,6 @@ export default class Index extends Component {
   }
 
   componentDidMount () {
-    firebase.initializeApp(clientCredentials)
-
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         this.setState({ user: user })
@@ -75,3 +71,5 @@ export default class Index extends Component {
     )
   }
 }
+
+export default withSession(Index)
