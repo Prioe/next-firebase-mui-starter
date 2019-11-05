@@ -1,7 +1,7 @@
 import session from 'express-session'
 import makeFirebaseStore from 'connect-session-firebase'
-import firebase from '../isomorphic-firebase'
-import wrapMiddleware from '../wrapMiddleware'
+import firebase from 'utils/isomorphic-firebase'
+import wrapMiddleware from 'utils/wrapMiddleware'
 
 const FirebaseStore = makeFirebaseStore(session)
 

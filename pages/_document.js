@@ -1,7 +1,7 @@
 import React from 'react'
 import Document, { Html, Head, Main, NextScript } from 'next/document'
+import session from 'utils/middleware/session'
 import pkg from '../package.json'
-import session from '../utils/middleware/session'
 
 export async function middleware({ req, res }) {
   if (!req) {

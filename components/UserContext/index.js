@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react'
-import firebase from '../../utils/isomorphic-firebase'
+import firebase from 'utils/isomorphic-firebase'
 
 export const UserContext = React.createContext({ user: null })
 

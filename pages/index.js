@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
-import firebase from '../utils/isomorphic-firebase'
-import { useUser, getInitialUser } from '../components/UserContext'
+import firebase from 'utils/isomorphic-firebase'
+import { useUser, getInitialUser } from 'components/UserContext'
 
 function Index() {
   const user = useUser()

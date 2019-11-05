@@ -1,7 +1,7 @@
 import React from 'react'
 import NextApp from 'next/app'
 import Head from 'next/head'
-import { UserProvider } from '../components/UserContext'
+import { UserProvider } from 'components/UserContext'
 // import { ThemeProvider } from '@material-ui/styles';
 // import CssBaseline from '@material-ui/core/CssBaseline';
 // import theme from 'theme';

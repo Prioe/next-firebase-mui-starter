@@ -1,6 +1,6 @@
 import micro from 'micro'
-import firebase from '../../utils/isomorphic-firebase'
-import session from '../../utils/middleware/session'
+import firebase from 'utils/isomorphic-firebase'
+import session from 'utils/middleware/session'
 
 export default micro(async (req, res) => {
   if (!req.body) return res.sendStatus(400)
