@@ -1,8 +1,10 @@
 import React, { useCallback } from 'react'
 import firebase from 'utils/isomorphic-firebase'
 import { useUser, getInitialUser } from 'components/UserContext'
+import config from 'config'
 
 function Index() {
+  console.log(config)
   const user = useUser()
 
   const handleLogin = useCallback(() => {
