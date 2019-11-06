@@ -5,9 +5,6 @@ import { ServerStyleSheets } from '@material-ui/core/styles'
 import pkg from '../package.json'
 
 export async function middleware({ req, res }) {
-  if (!req) {
-    return
-  }
   await session(req, res)
 }
 

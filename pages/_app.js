@@ -4,6 +4,7 @@ import Head from 'next/head'
 import { UserProvider } from 'components/UserContext'
 import { ThemeProvider } from '@material-ui/styles'
 import { CssBaseline, createMuiTheme } from '@material-ui/core'
+import Layout from 'components/Layout'
 import config from 'config'
 // import theme from 'theme';
 
@@ -31,7 +32,9 @@ function App(props) {
       <UserProvider initialUser={__user}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          <Component {...pageProps} />
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
         </ThemeProvider>
       </UserProvider>
     </>
