@@ -96,5 +96,6 @@ public/
 .dynamodb/
 
 # End of https://www.gitignore.io/api/node
-sessions/*
-!sessions/.gitkeep
+
+config/client.js
+config/server.js
