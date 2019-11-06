@@ -1,6 +1,7 @@
 import React from 'react'
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 import session from 'utils/middleware/session'
+import { ServerStyleSheets } from '@material-ui/core/styles'
 import pkg from '../package.json'
 
 export async function middleware({ req, res }) {
@@ -12,28 +13,36 @@ export async function middleware({ req, res }) {
 
 class EnhancedDocument extends Document {
   static async getInitialProps(ctx) {
+    const sheets = new ServerStyleSheets()
     const originalRenderPage = ctx.renderPage
 
     ctx.renderPage = () =>
       originalRenderPage({
-        // useful for wrapping the whole react tree
-        enhanceApp: (App) => App,
-        // useful for wrapping in a per-page basis
-        enhanceComponent: (Component) => {
-          return Component
-        }
+        enhanceApp: (App) => (props) => sheets.collect(<App {...props} />)
       })
 
     // Run the parent `getInitialProps` using `ctx` that now includes our custom `renderPage`
     const initialProps = await Document.getInitialProps(ctx)
 
-    return initialProps
+    return {
+      ...initialProps,
+      // Styles fragment is rendered after the app and page rendering finish.
+      styles: [
+        ...React.Children.toArray(initialProps.styles),
+        sheets.getStyleElement()
+      ]
+    }
   }
 
   render() {
     return (
       <Html>
-        <Head />
+        <Head>
+          <link
+            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+            rel="stylesheet"
+          />
+        </Head>
         <body>
           <Main />
           <script

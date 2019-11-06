@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-unresolved
 import envConfig from 'env-config'
-// import { red } from '@material-ui/core/colors';
+import { red } from '@material-ui/core/colors'
 
 const muiTheme = {
   palette: {
@@ -10,9 +10,9 @@ const muiTheme = {
     secondary: {
       main: '#19857b'
     },
-    // error: {
-    //   main: red.A400,
-    // },
+    error: {
+      main: red.A400
+    },
     background: {
       default: '#fff'
     }

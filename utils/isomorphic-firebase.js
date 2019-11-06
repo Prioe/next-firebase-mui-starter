@@ -8,7 +8,7 @@ if (typeof window === 'undefined') {
   if (!firebase.apps.find((app) => app.name === '[DEFAULT]'))
     firebase.initializeApp({
       credential: firebase.credential.cert(config.firebaseAdminCredential),
-      databaseURL: 'https://next-example-69997.firebaseio.com'
+      databaseURL: config.databaseURL
     })
 } else {
   firebase = require('firebase/app')
